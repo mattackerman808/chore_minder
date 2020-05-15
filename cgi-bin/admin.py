@@ -53,8 +53,10 @@ for chore in sorted(chores):
  
    c.execute('''SELECT value FROM chore_table WHERE chore = ?''', (chore))
    value = c.fetchone()
+
+   chore_fixed = "%s" % chore
    print "<tr>"
-   print "<td>%s</td>" % chore
+   print "<td>%s</td>" % chore_fixed.capitalize()
    print "<td style=\"text-align:right\">$%s</td>" % value
    print "</tr>"
 
@@ -80,7 +82,7 @@ print '<select id="chore" name="chore">'
 
 for chore in sorted(chores):
     chore_fixed = "%s" % chore
-    print "<option value=\"%s\">%s" % (chore_fixed,chore_fixed)
+    print "<option value=\"%s\">%s" % (chore_fixed,chore_fixed.capitalize())
     print "</option>"
 
 print('''
@@ -93,6 +95,10 @@ print('''
 
 <div>
 <a href="reporter.py">Run Payroll</a>
+</div>
+
+<div>
+<a href="user_manage.py">Manage Users</a>
 </div>
 
 </body>

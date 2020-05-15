@@ -58,7 +58,9 @@ if not realname:
    print "</div></body></html>"
    exit(0)
 
-print "<h2>Hi there %s!</h2>What chore did you do?<br><br>" % realname
+realname_fixed = "%s" % realname
+
+print "<h2>Hi there %s!</h2>What chore did you do?<br><br>" % realname_fixed.capitalize()
 
 print '<form action="/cgi-bin/submit.py">'
 print '<input type="hidden" name="name" value="%s" required>' % realname
@@ -70,7 +72,7 @@ print '<select id="chore" name="chore">'
 
 for chore in sorted(chores):
     chore_fixed = "%s" % chore
-    print "<option value=\"%s\">%s" % (chore_fixed,chore_fixed)
+    print "<option value=\"%s\">%s" % (chore_fixed,chore_fixed.capitalize())
     print "</option>"
 
 print('''
@@ -106,8 +108,10 @@ for id in sorted(ids):
    c.execute('''SELECT value FROM chore_table WHERE chore = ?''', (chore))
    value = c.fetchone()
 
+   chore_fixed = "%s" % chore
+
    print "<tr>"
-   print "<td>%s</td>" % chore
+   print "<td>%s</td>" % chore_fixed.capitalize()
    print "<td>%s</td>" % date
    print "<td style=\"text-align:right\">$%s</td>" % value
    print "</tr>"
@@ -132,8 +136,10 @@ for chore in sorted(chores):
    c.execute('SELECT value FROM chore_table WHERE chore = ?''', (chore))
    value=c.fetchone()
 
+   chore_fixed = "%s" % chore
+
    print "<tr>"
-   print "<td>%s</td>" % chore
+   print "<td>%s</td>" % chore_fixed.capitalize()
    print "<td style=\"text-align:right\">$%s</td>" % value
 
 print('''

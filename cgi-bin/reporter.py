@@ -48,9 +48,11 @@ for id in sorted(ids):
    c.execute('''SELECT value FROM completed_chores WHERE id = ?''', (id))
    value = c.fetchone()
 
+   chore_fixed = "%s" % chore
+
    print "<tr>"
    print "<td>%s</td>" % name_fixed.capitalize()
-   print "<td>%s</td>" % chore
+   print "<td>%s</td>" % chore_fixed.capitalize()
    print "<td>%s</td>" % date
    print "<td style=\"text-align:right\">$%s</td>" % value
    print "</tr>"

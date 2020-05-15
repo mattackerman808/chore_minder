@@ -56,13 +56,52 @@ for name in sorted(names):
    c.execute('''SELECT email FROM users WHERE name = ?''', (name))
    email = c.fetchone()
 
+   name_fixed = "%s" % name
+
    print "<tr>"
-   print "<td>%s</td>" % name
+   print "<td>%s</td>" % name_fixed.capitalize()
    print "<td>%s</td>" % gauth
    print "<td>%s</td>" % email
    print "</tr>"
 
-print "</table><br>"
+print('''
+</table><br>
+
+</div>
+
+<div>
+<b>Add New User</b>
+<form action="/cgi-bin/new_user.py">
+Name:<input type="text" name="name" required><br>
+Gauth:<input type="text" name="gauth" required><br>
+Email:&nbsp<input type="text" name="email" required><br><br>
+<input type="submit" style="font-size:100%;color:white;background-color:blue">
+</form>
+</div>
+
+<div>
+<b>Delete User</b><br><br>
+<form action="/cgi-bin/delete_user.py">
+''')
+
+c.execute('''SELECT name FROM users''')
+names = c.fetchall()
+
+print '<select id="user" name="user">'
+
+for name in sorted(names):
+    name_fixed = "%s" % name
+    print "<option value=\"%s\">%s" % (name_fixed,name_fixed.capitalize())
+    print "</option>"
+
+print('''
+</select>
+  <br>
+  <br>
+  <input type="submit" style="font-size:100%;color:white;background-color:blue">
+</form>
+</div>
+''')
 
 print '<a href="admin.py">Go Back</a>'
 

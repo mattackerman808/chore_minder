@@ -50,7 +50,7 @@ print "<head>"
 print "<title>Chore Submitter</title>"
 print "</head>"
 print "<body>"
-print "<h1>Thanks %s! I wrote down the chore: %s</h1>" % (name.capitalize(), chore.capitalize())
+print "<h4>Thanks %s!<br><br>I wrote down the chore: %s</h4>" % (name.capitalize(), chore.capitalize())
 print '<a href="chores.py">Go Back</a>'
 print "</body>"
 print "</html>"
