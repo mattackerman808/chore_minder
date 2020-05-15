@@ -32,7 +32,7 @@ print "<head>"
 print "<title>Chore Admin</title>"
 print "</head>"
 print "<style> table, th, td { border: 1px solid black; padding: 3px;}</style>"
-print '<style> div { margin-top: 25px; margin-bottom: 100px; margin-right: 150px; margin-left: 100px; font-family: "SF Pro Text", "Myriad Set Pro", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif; font-size: 100%; }</style>'
+print '<style> div { margin-top: 25px; margin-bottom: 25px; margin-right: 150px; margin-left: 100px; font-family: "SF Pro Text", "Myriad Set Pro", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif; font-size: 100%; }</style>'
 print "<body>"
 print "<center>"
 print '<img src=/images/chores.jpg>'
@@ -70,8 +70,31 @@ print '</form>'
 print '</div>'
 
 print '<div>'
-print '<a href="reporter.py">Run Payroll</a>'
-print '</div>'
+print '<b>Delete Chore</b><br><br>'
+print '<form action="/cgi-bin/delete_chore.py">'
 
-print "</body>"
-print "</html>"
+c.execute('''SELECT chore FROM chore_table''')
+chores = c.fetchall()
+
+print '<select id="chore" name="chore">'
+
+for chore in sorted(chores):
+    chore_fixed = "%s" % chore
+    print "<option value=\"%s\">%s" % (chore_fixed,chore_fixed)
+    print "</option>"
+
+print('''
+</select>
+  <br>
+  <br>
+  <input type="submit" style="font-size:100%;color:white;background-color:blue">
+</form>
+</div>
+
+<div>
+<a href="reporter.py">Run Payroll</a>
+</div>
+
+</body>
+</html>
+''')

@@ -65,35 +65,21 @@ print "  <th>Name</th>"
 print "  <th>Total Owed</th>"
 print " </tr>"
 
-print " <tr>"
-print "  <td>Ben</td>"
+c.execute('''SELECT name FROM users''')
+users=c.fetchall()
 
-c.execute('''select SUM(value) FROM completed_chores WHERE name="ben"''')
-ben_total = c.fetchone()
+for user in sorted(users):
 
-print "  <td style=\"text-align:right\">$%s" % ben_total
-print "  </td>"
-print " </tr>"
+   user_fixed = "%s" % user
+   print "<tr>"
+   print " <td>%s</td>" % user_fixed.capitalize()
 
-print " <tr>"
-print "  <td>Jake</td>"
+   c.execute('''select SUM(value) FROM completed_chores WHERE name = ?''', (user_fixed.lower(),))
+   total = c.fetchone()
 
-c.execute('''select SUM(value) FROM completed_chores WHERE name="jake"''')
-jake_total = c.fetchone()
-
-print "  <td style=\"text-align:right\">$%s" % jake_total
-print "  </td>"
-print " </tr>"
-
-print " <tr>"
-print "  <td>Lucas</td>"
-
-c.execute('''select SUM(value) FROM completed_chores WHERE name="lucas"''')
-lucas_total = c.fetchone()
-
-print "  <td style=\"text-align:right\">$%s" % lucas_total
-print "  </td>"
-print " </tr>"
+   print "  <td style=\"text-align:right\">$%s" % total
+   print "  </td>"
+   print " </tr>"
 
 print "</table>"
 print "</div>"
