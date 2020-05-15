@@ -115,6 +115,30 @@ for id in sorted(ids):
 print('''
 </table>
 </div>
+<div>
+<h3>Available Chores:</h3>
+<table>
+ <tr>
+  <td>Chore</td>
+  <td>Value</td>
+ </tr>
+''')
+
+c.execute('''SELECT chore FROM chore_table''')
+chores=c.fetchall()
+
+for chore in sorted(chores):
+
+   c.execute('SELECT value FROM chore_table WHERE chore = ?''', (chore))
+   value=c.fetchone()
+
+   print "<tr>"
+   print "<td>%s</td>" % chore
+   print "<td style=\"text-align:right\">$%s</td>" % value
+
+print('''
+</table>
+</div>
 </body>
 </html>
 ''')
