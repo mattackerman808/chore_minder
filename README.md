@@ -7,7 +7,7 @@ Install:
 
 Currently requires python2 in /bin/python (will fix soon)
 
-Requires sqlite3 DB libs for python install
+Requires cgi and sqlite3 DB libs for python install
 
 System writes DB file into /var/tmp (will need write access for web server user)
 
