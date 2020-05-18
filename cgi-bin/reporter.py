@@ -32,7 +32,7 @@ print('''
 </style>
 <body>
 <center>
-<img src=/images/chores.jpg>
+<img src=/images/chores.png width="35%" height="35%">
 </center>
 <div>
 <b>Completed Chores</b><br><br>

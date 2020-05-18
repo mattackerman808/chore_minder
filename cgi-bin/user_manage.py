@@ -48,7 +48,7 @@ print('''
 </style>
 <body>
 <center>
-<img src=/images/chores.jpg>
+<img src=/images/chores.png width="35%" height="35%">
 </center>
 <div>
 <b>Configured Users</b><br><br>

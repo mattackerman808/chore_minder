@@ -43,7 +43,7 @@ table, th, td {
 <title>808 Chore Minder</title>
 <body bgcolor=white>
 <center>
-<img src=/images/chores.jpg>
+<img src=/images/chores.png width="35%" height="35%">
 </center>
 ''')
 
