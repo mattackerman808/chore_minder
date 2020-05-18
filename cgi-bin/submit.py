@@ -45,14 +45,20 @@ except:
   log.critical("Exception while commiting or closing database")
 
 print "Content-type:text/html\r\n\r\n"
-print "<html>"
-print "<head>"
-print "<title>Chore Submitter</title>"
-print "</head>"
-print "<body>"
+
+print('''
+<!DOCTYPE html>
+<html>
+<head>
+<title>Chore Submitter</title>
+</head>
+<body>
+''')
+
 print "<h4>Thanks %s!<br><br>I wrote down the chore: %s</h4>" % (name.capitalize(), chore.capitalize())
-print '<a href="chores.py">Go Back</a>'
-print "</body>"
-print "</html>"
 
-
+print('''
+<a href="chores.py">Go Back</a>
+</body>
+</html>
+''')

@@ -9,29 +9,44 @@ conn = sqlite3.connect(sqlite_file)
 c = conn.cursor()
 
 print "Content-type:text/html\r\n\r\n"
-print "<html>"
-print "<head>"
-print "<title>Completed Chores</title>"
-print "</head>"
-print "<style> table, th, td { border: 1px solid black; padding: 3px;}</style>"
-print '<style> div { margin-top: 5px; margin-bottom: 10px; margin-right: 150px; margin-left: 100px; font-family: "SF Pro Text", "Myriad Set Pro", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif; font-size: 100%; }</style>'
-print "<body>"
-print "<center>"
-print '<img src=/images/chores.jpg>'
-print "</center>"
-print "<div>"
-print "<b>Completed Chores</b><br><br>"
+
+print('''
+<!DOCTYPE html>
+<html>"
+<head>"
+<title>Completed Chores</title>"
+</head>"
+<style>
+ table, th, td {
+  border: 1px solid black;
+  padding: 3px;
+ }
+ div {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  margin-right: 150px;
+  margin-left: 100px;
+  font-family: "SF Pro Text", "Myriad Set Pro", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-size: 100%;
+ }
+</style>
+<body>
+<center>
+<img src=/images/chores.jpg>
+</center>
+<div>
+<b>Completed Chores</b><br><br>
+<table>
+ <tr>
+  <th>Name</th>
+  <th>Chore</th>
+  <th>Date</th>
+  <th>Value</th>
+ </tr>
+''')
 
 c.execute('''SELECT id FROM completed_chores''')
 ids = c.fetchall()
-
-print "<table>"
-print " <tr>"
-print "  <th>Name</th>"
-print "  <th>Chore</th>"
-print "  <th>Date</th>"
-print "  <th>Value</th>"
-print " </tr>"
 
 for id in sorted(ids):
  
@@ -57,15 +72,17 @@ for id in sorted(ids):
    print "<td style=\"text-align:right\">$%s</td>" % value
    print "</tr>"
 
-print "</table><br>"
-
-print "</div><div>"
-print "<b>Totals</b>"
-print "<table>"
-print " <tr>"
-print "  <th>Name</th>"
-print "  <th>Total Owed</th>"
-print " </tr>"
+print('''
+</table><br>
+</div>
+<div>
+<b>Totals</b>
+<table>
+ <tr>
+  <th>Name</th>
+  <th>Total Owed</th>
+ </tr>
+''')
 
 c.execute('''SELECT name FROM users''')
 users=c.fetchall()
@@ -83,14 +100,14 @@ for user in sorted(users):
    print "  </td>"
    print " </tr>"
 
-print "</table>"
-print "</div>"
-print "<div>"
-print "<br>"
-print '<a href="delete_chores.py"><b>Delete All Chores</b></a>'
-print "</div>"
-
-print '<a href="admin.py">Go Back</a>'
-
-print "</body>"
-print "</html>"
+print('''
+</table>
+</div>
+<div>
+<br>
+<a href="delete_chores.py"><b>Delete All Chores</b></a>
+</div>
+<a href="admin.py">Go Back</a>
+</body>
+</html>
+''')

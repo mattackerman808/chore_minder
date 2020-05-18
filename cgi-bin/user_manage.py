@@ -25,28 +25,43 @@ except:
   exit(1)
 
 print "Content-type:text/html\r\n\r\n"
-print "<html>"
-print "<head>"
-print "<title>Chore Minder Users</title>"
-print "</head>"
-print "<style> table, th, td { border: 1px solid black; padding: 3px;}</style>"
-print '<style> div { margin-top: 5px; margin-bottom: 10px; margin-right: 150px; margin-left: 100px; font-family: "SF Pro Text", "Myriad Set Pro", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif; font-size: 100%; }</style>'
-print "<body>"
-print "<center>"
-print '<img src=/images/chores.jpg>'
-print "</center>"
-print "<div>"
-print "<b>Configured Users</b><br><br>"
+
+print('''
+<!DOCTYPE html>
+<html>
+<head>
+<title>Chore Minder Users</title>
+</head>
+<style>
+ table, th, td {
+  border: 1px solid black;
+  padding: 3px;
+  }
+ div {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  margin-right: 150px;
+  margin-left: 100px;
+  font-family: "SF Pro Text", "Myriad Set Pro", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-size: 100%;
+  }
+</style>
+<body>
+<center>
+<img src=/images/chores.jpg>
+</center>
+<div>
+<b>Configured Users</b><br><br>
+<table>
+ <tr>
+  <th>Name</th>
+  <th>Gauth</th>
+  <th>Email</th>
+ </tr>
+''')
 
 c.execute('''SELECT name FROM users''')
 names = c.fetchall()
-
-print "<table>"
-print " <tr>"
-print "  <th>Name</th>"
-print "  <th>Gauth</th>"
-print "  <th>Email</th>"
-print " </tr>"
 
 for name in sorted(names):
  
@@ -66,9 +81,7 @@ for name in sorted(names):
 
 print('''
 </table><br>
-
 </div>
-
 <div>
 <b>Add New User</b>
 <form action="/cgi-bin/new_user.py">
@@ -78,7 +91,6 @@ Email:&nbsp<input type="text" name="email" required><br><br>
 <input type="submit" style="font-size:100%;color:white;background-color:blue">
 </form>
 </div>
-
 <div>
 <b>Delete User</b><br><br>
 <form action="/cgi-bin/delete_user.py">
@@ -101,9 +113,7 @@ print('''
   <input type="submit" style="font-size:100%;color:white;background-color:blue">
 </form>
 </div>
+<a href="admin.py">Go Back</a>
+</body>
+</html>
 ''')
-
-print '<a href="admin.py">Go Back</a>'
-
-print "</body>"
-print "</html>"

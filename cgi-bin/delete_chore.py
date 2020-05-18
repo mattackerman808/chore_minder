@@ -30,14 +30,20 @@ except:
   exit(1)
 
 print "Content-type:text/html\r\n\r\n"
-print "<html>"
-print "<head>"
-print "<title>Chore Deleter</title>"
-print "</head>"
-print "<body>"
+
+print('''
+<!DOCTYPE html>
+<html>
+<head>
+<title>Chore Deleter</title>
+</head>
+<body>
+''')
+
 print "%s deleted!<br><br><br>" % chore
-print '<a href="admin.py">Go Back</a>'
-print "</body>"
-print "</html>"
 
-
+print('''
+<a href="admin.py">Go Back</a>
+</body>
+</html>
+''')

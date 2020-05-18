@@ -27,27 +27,43 @@ except:
   exit(1)
 
 print "Content-type:text/html\r\n\r\n"
-print "<html>"
-print "<head>"
-print "<title>Chore Admin</title>"
-print "</head>"
-print "<style> table, th, td { border: 1px solid black; padding: 3px;}</style>"
-print '<style> div { margin-top: 25px; margin-bottom: 25px; margin-right: 150px; margin-left: 100px; font-family: "SF Pro Text", "Myriad Set Pro", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif; font-size: 100%; }</style>'
-print "<body>"
-print "<center>"
-print '<img src=/images/chores.jpg>'
-print "</center>"
-print "<div>"
-print "<b>Current Chores Setup</b><br><br>"
+
+print ('''
+<!DOCTYPE html>
+<html>
+<head>
+<title>Chore Admin</title>
+</head>
+<style>
+ table, th, td { 
+  border: 1px solid black; padding: 3px;
+ }
+ div {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  margin-right: 150px;
+  margin-left: 100px;
+  font-family: "SF Pro Text", "Myriad Set Pro", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-size: 100%;
+ }
+</style>
+
+<body>
+<center>
+<img src=/images/chores.jpg>
+</center>
+<div>
+<b>Current Chores Setup</b><br><br>
+
+<table>
+ <tr>
+  <th>Chore</th>
+  <th>Value</th>
+ </tr>
+''')
 
 c.execute('''SELECT chore FROM chore_table''')
 chores = c.fetchall()
-
-print "<table>"
-print " <tr>"
-print "  <th>Chore</th>"
-print "  <th>Value</th>"
-print " </tr>"
 
 for chore in sorted(chores):
  
@@ -55,30 +71,34 @@ for chore in sorted(chores):
    value = c.fetchone()
 
    chore_fixed = "%s" % chore
+
    print "<tr>"
    print "<td>%s</td>" % chore_fixed.capitalize()
    print "<td style=\"text-align:right\">$%s</td>" % value
    print "</tr>"
 
-print "</table>"
-print "</div>"
-print "<div>"
-print "<b>Add new:</b><br><br>"
-print '<form action="/cgi-bin/new_chore.py">'
-print 'Chore:<input type="text" name="chore" required><br>'
-print 'Value:&nbsp<input type="text" name="value" required><br><br>'
-print '<input type="submit" style="font-size:100%;color:white;background-color:blue">'
-print '</form>'
-print '</div>'
+print('''
 
-print '<div>'
-print '<b>Delete Chore</b><br><br>'
-print '<form action="/cgi-bin/delete_chore.py">'
+</table>
+</div>
+
+<div>
+<b>Add new:</b><br><br>
+<form action="/cgi-bin/new_chore.py">
+ Chore:<input type="text" name="chore" required><br>
+ Value:&nbsp<input type="text" name="value" required><br><br>
+ <input type="submit" style="font-size:100%;color:white;background-color:blue">
+</form>
+</div>
+
+<div>
+<b>Delete Chore</b><br><br>
+<form action="/cgi-bin/delete_chore.py">
+<select id="chore" name="chore">
+''')
 
 c.execute('''SELECT chore FROM chore_table''')
 chores = c.fetchall()
-
-print '<select id="chore" name="chore">'
 
 for chore in sorted(chores):
     chore_fixed = "%s" % chore

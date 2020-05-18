@@ -2,8 +2,6 @@
 
 import sqlite3
 
-print "Content-type:text/html\r\n\r\n"
-
 sqlite_file = '/var/tmp/chores.sqlite'
 
 try:
@@ -25,13 +23,17 @@ except:
   log.critical("Exception creating sqlite3 tables")
   exit(1)
 
-print "<html>"
-print "<head>"
-print "<title>Chore Deleter</title>"
-print "</head>"
-print "<body>"
-print "All Completed Chores Deleted!<br><br><br>"
-print '<a href="admin.py">Go to Admin</a>'
-print "</body>"
-print "</html>"
+print "Content-type:text/html\r\n\r\n"
 
+print('''
+<!DOCTYPE html>
+<html>
+<head>
+<title>Chore Deleter</title>
+</head>
+<body>
+All Completed Chores Deleted!<br><br><br>
+<a href="admin.py">Go to Admin</a>
+</body>
+</html>
+''')

@@ -45,14 +45,20 @@ except:
   log.critical("Exception while commiting or closing database")
 
 print "Content-type:text/html\r\n\r\n"
-print "<html>"
-print "<head>"
-print "<title>Chore Submitter</title>"
-print "</head>"
-print "<body>"
+
+print('''
+<!DOCTYPE html>
+<html>
+<head>
+<title>Chore Submitter</title>
+</head>
+<body>
+''')
+
 print "%s submitted!<br><br><br>" % chore
-print '<a href="admin.py">Go Back</a>'
-print "</body>"
-print "</html>"
 
-
+print('''
+<a href="admin.py">Go Back</a>
+</body>
+</html>
+''')
