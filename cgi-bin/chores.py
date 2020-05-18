@@ -29,11 +29,11 @@ div {
 }
 input, radio {
   font-family: "SF Pro Text", "Myriad Set Pro", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  font-size: 180%;
+  font-size: 100%;
 }
 select, option {
   font-family: "SF Pro Text", "Myriad Set Pro", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  font-size: 180%;
+  font-size: 100%;
 }
 table, th, td {
   border: 1px solid black; 
