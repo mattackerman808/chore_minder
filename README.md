@@ -17,5 +17,5 @@ Requires sqllite DB libs for python install
 * Go to main chore page (/cgi-bin/chores.py)
 * Looks for REMOTE_USER env variable to ID user
 * Create a user with REMOTE_USER tag (Gauth field, was written for Google auth intergration)
-** will print variable under Guru data
+* Page will print variable under 'Guru data'
 * Start creating chores with values and have users submit them
