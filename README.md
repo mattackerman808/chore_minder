@@ -20,6 +20,6 @@ System writes DB file into /var/tmp (will need write access for web server user)
 * Go to main chore page (/cgi-bin/chores.py)
 * Looks for REMOTE_USER env variable to ID user, will get warning until user is created with correct variable
 * Create a user with REMOTE_USER tag (Gauth field, was written for Google auth intergration)
-* Page will print variable under 'Guru data'
+* Page will print variable under 'Guru data' if unknown
 * Start creating chores with values and have users submit them
 * Use 'run payroll' link in admin page to see history and amount owed
