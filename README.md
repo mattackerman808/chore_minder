@@ -9,6 +9,8 @@ Currently requires python2 in /bin/python (will fix soon)
 
 Requires sqllite DB libs for python install
 
+System writes DB file into /var/tmp (will need write access for web server user)
+
 * Clone into DocRoot
 * Setup cgi-bin for execution within your web server
 * Go to admin page (/cgi-bin/admin.py)
