@@ -18,7 +18,7 @@ System writes DB file into /var/tmp (will need write access for web server user)
 * Create a new user (Mange Users link)
 * Two steps above create required db and tables
 * Go to main chore page (/cgi-bin/chores.py)
-* Looks for REMOTE_USER env variable to ID user
+* Looks for REMOTE_USER env variable to ID user, will get warning until user is created with correct variable
 * Create a user with REMOTE_USER tag (Gauth field, was written for Google auth intergration)
 * Page will print variable under 'Guru data'
 * Start creating chores with values and have users submit them
