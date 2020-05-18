@@ -53,7 +53,7 @@ realname = c.fetchone()
 print "<div>"
 
 if not realname:
-   print "<h1>I don't know who you are yet!</h1><br>Ask Dad/Matt to fix your account.<br><br><br>"
+   print "<h1>I don't know who you are yet!</h1><br>Ask your admin to create your account.<br><br><br>"
    print "Guru data: %s" % username
    print "</div></body></html>"
    exit(0)
