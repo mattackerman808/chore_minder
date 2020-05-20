@@ -12,10 +12,10 @@ print "Content-type:text/html\r\n\r\n"
 
 print('''
 <!DOCTYPE html>
-<html>"
-<head>"
-<title>Completed Chores</title>"
-</head>"
+<html>
+<head>
+<title>Completed Chores</title>
+</head>
 <style>
  table, th, td {
   border: 1px solid black;
