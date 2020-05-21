@@ -42,6 +42,7 @@ print('''
   <th>Chore</th>
   <th>Date</th>
   <th>Value</th>
+  <th></th>
  </tr>
 ''')
 
@@ -70,6 +71,7 @@ for id in sorted(ids):
    print "<td>%s</td>" % chore_fixed.capitalize()
    print "<td>%s</td>" % date
    print "<td style=\"text-align:right\">$%s</td>" % value
+   print "<td><a style=\"color:blue\" href=/cgi-bin/remove_chore.py?id=%s>Delete</a></td>" % id
    print "</tr>"
 
 print('''
