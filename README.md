@@ -15,7 +15,7 @@ System writes DB file into /var/tmp (will need write access for web server user)
 * Setup cgi-bin dir for execution within your web server
 * Go to admin page (/admin)
 * Create a new chore (Manage Chore Link)
-* Create a new user (Mange Users Link)
+* Create a new user (Manage Users Link)
 * Two steps above create required db and tables
 * Go to main chore page (/)
 * Looks for REMOTE_USER env variable to ID user, will get warning until user is created with correct variable
