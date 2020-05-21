@@ -5,114 +5,118 @@ import sqlite3
 import datetime
 
 sqlite_file = '/var/tmp/chores.sqlite'
-
-daytime = datetime.datetime.now()
-
 conn = sqlite3.connect(sqlite_file)
 c = conn.cursor()
 
-c.execute("PRAGMA auto_vacuum = 2;")
-c.execute("PRAGMA encoding = 'UTF-8';")
-c.execute("PRAGMA temp_store = MEMORY;")
-c.execute("PRAGMA journal_mode = MEMORY;")
-c.execute("CREATE TABLE IF NOT EXISTS chore_table (chore TEXT, value TEXT);")
-c.execute("VACUUM;")
-
 print "Content-type:text/html\r\n\r\n"
 
-print ('''
+print('''
 <!DOCTYPE html>
 <html>
 <head>
-<title>Chore Admin</title>
+<title>Completed Chores</title>
 </head>
 <style>
- table, th, td { 
-  border: 1px solid black; padding: 3px;
+ table, th, td {
+  border: 1px solid black;
+  padding: 3px;
  }
  div {
-  margin-top: 25px;
-  margin-bottom: 25px;
+  margin-top: 5px;
+  margin-bottom: 10px;
   margin-right: 150px;
   margin-left: 100px;
   font-family: "SF Pro Text", "Myriad Set Pro", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   font-size: 100%;
  }
 </style>
-
 <body>
 <center>
 <img src=/images/chores.png width="35%" height="35%">
 </center>
 <div>
-<b>Current Chores Setup</b><br><br>
-
+<b>Completed Chores</b><br><br>
 <table>
  <tr>
+  <th>Name</th>
   <th>Chore</th>
+  <th>Date</th>
   <th>Value</th>
+  <th></th>
  </tr>
 ''')
 
-c.execute('''SELECT chore FROM chore_table''')
-chores = c.fetchall()
+c.execute('''SELECT id FROM completed_chores''')
+ids = c.fetchall()
 
-for chore in sorted(chores):
+for id in sorted(ids):
  
-   c.execute('''SELECT value FROM chore_table WHERE chore = ?''', (chore))
+   c.execute('''SELECT name FROM completed_chores WHERE id = ?''', (id))
+   name = c.fetchone()
+   name_fixed = "%s" % name
+
+   c.execute('''SELECT chore FROM completed_chores WHERE id = ?''', (id))
+   chore = c.fetchone()
+
+   c.execute('''SELECT date FROM completed_chores WHERE id = ?''', (id))
+   date = c.fetchone()
+
+   c.execute('''SELECT value FROM completed_chores WHERE id = ?''', (id))
    value = c.fetchone()
 
    chore_fixed = "%s" % chore
 
    print "<tr>"
+   print "<td>%s</td>" % name_fixed.capitalize()
    print "<td>%s</td>" % chore_fixed.capitalize()
+   print "<td>%s</td>" % date
    print "<td style=\"text-align:right\">$%s</td>" % value
+   print "<td><a style=\"color:blue\" href=/cgi-bin/remove_chore.py?id=%s>Delete</a></td>" % id
    print "</tr>"
 
 print('''
-
-</table>
+</table><br>
 </div>
-
 <div>
-<b>Add new:</b><br><br>
-<form action="/cgi-bin/new_chore.py">
- Chore:<input type="text" name="chore" required><br>
- Value:&nbsp<input type="text" name="value" required><br><br>
- <input type="submit" style="font-size:100%;color:white;background-color:blue">
-</form>
-</div>
-
-<div>
-<b>Delete Chore</b><br><br>
-<form action="/cgi-bin/delete_chore.py">
-<select id="chore" name="chore">
+<b>Totals</b>
+<table>
+ <tr>
+  <th>Name</th>
+  <th>Total Owed</th>
+ </tr>
 ''')
 
-c.execute('''SELECT chore FROM chore_table''')
-chores = c.fetchall()
+c.execute('''SELECT name FROM users''')
+users=c.fetchall()
 
-for chore in sorted(chores):
-    chore_fixed = "%s" % chore
-    print "<option value=\"%s\">%s" % (chore_fixed,chore_fixed.capitalize())
-    print "</option>"
+for user in sorted(users):
+
+   user_fixed = "%s" % user
+   print "<tr>"
+   print " <td>%s</td>" % user_fixed.capitalize()
+
+   c.execute('''select SUM(value) FROM completed_chores WHERE name = ?''', (user_fixed.lower(),))
+   total = c.fetchone()
+
+   print "  <td style=\"text-align:right\">$%s" % total
+   print "  </td>"
+   print " </tr>"
 
 print('''
-</select>
-  <br>
-  <br>
-  <input type="submit" style="font-size:100%;color:white;background-color:blue">
-</form>
+</table>
 </div>
-
 <div>
-<a href="reporter.py">Run Payroll</a>
+<br>
+<a href="delete_chores.py"><b>Remove ALL Completed Chores</b></a>
 </div>
-
 <div>
-<a href="user_manage.py">Manage Users</a>
+<br>
+<a href="chore_manage.py">Setup/Manage Chores</a>
 </div>
-
+<div>
+<br>
+<a href="user_manage.py">Setup/Manage Users</a>
+</div>
 </body>
 </html>
 ''')

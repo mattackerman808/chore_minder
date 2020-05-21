@@ -46,7 +46,7 @@ print('''
 print "%s submitted!<br><br><br>" % chore
 
 print('''
-<a href="admin.py">Go Back</a>
+<a href="chore_manage.py">Go Back</a>
 </body>
 </html>
 ''')

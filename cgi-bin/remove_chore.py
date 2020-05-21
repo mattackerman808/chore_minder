@@ -31,7 +31,7 @@ print('''
 print "Deleted!<br><br><br>"
 
 print('''
-<a href="reporter.py">Go Back</a>
+<a href="admin.py">Go Back</a>
 </body>
 </html>
 ''')
