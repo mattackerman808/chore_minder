@@ -13,10 +13,7 @@ System writes DB file into /var/tmp (will need write access for web server user)
 
 * Make html dir your docroot
 * Setup cgi-bin dir for execution within your web server
-* Go to admin page (/admin)
-* Create a new chore (Manage Chore Link)
-* Create a new user (Manage Users Link)
-* Two steps above create required db and tables
+* Run DB Setup Script: /cgi-bin/setup_db.py
 * Go to main chore page (/)
 * Looks for REMOTE_USER env variable to ID user, will get warning until user is created with correct variable
 * Create a user with REMOTE_USER tag within admin page (Gauth field in DB, was written for Google auth intergration)
